@@ -2,6 +2,8 @@
 
 <h2>Home</h2>
 
+@(Html.DevExtreme().Scheduler());
+
 @(Html.DevExtreme().DataGrid<SampleOrder>()
     .ShowBorders(true)
     .DataSource(d => d.Mvc().Controller("SampleData").LoadAction("Get").Key("OrderID"))
