@@ -20,6 +20,6 @@ namespace ASP_NET_Core.Models {
                 Image = "https://js.devexpress.com/Demos/WidgetsGallery/JSDemos/images/movies/HisGirlFriday.jpg",
                 Duration = 92
             }
-};
+        };
     }
 }
