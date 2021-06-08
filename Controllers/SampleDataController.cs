@@ -18,5 +18,22 @@ namespace ASP_NET_Core.Controllers {
             return DataSourceLoader.Load(SampleData.Orders, loadOptions);
         }
 
+        [HttpPost]
+        public object Post(string values)
+        {
+            return Ok();
+        }
+        [HttpPut]
+        public object Put(int key, string values)
+        {
+            return Ok();
+        }
+
+        [HttpDelete]
+        public object Delete(int key)
+        {
+            return Ok();
+        }
+
     }
 }
