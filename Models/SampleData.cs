@@ -19,6 +19,30 @@ namespace ASP_NET_Core.Models {
                 Year = 1940,
                 Image = "https://js.devexpress.com/Demos/WidgetsGallery/JSDemos/images/movies/HisGirlFriday.jpg",
                 Duration = 92
+            },
+            new SampleAppointment
+            {
+                ID = 2,
+                Price = 5,
+                StartDate = new DateTime(2015, 4, 25, 11, 30, 0),
+                EndDate =  new DateTime(2015, 4, 25, 13, 2, 0),
+                Text = "Royal Wedding",
+                Director = "Stanley Donen",
+                Year = 1940,
+                Image = "https://js.devexpress.com/Demos/WidgetsGallery/JSDemos/images/movies/HisGirlFriday.jpg",
+                Duration = 92
+            },
+            new SampleAppointment
+            {
+                ID = 3,
+                Price = 10,
+                StartDate = new DateTime(2015, 4, 25, 9, 10, 0),
+                EndDate =  new DateTime(2015, 4, 25, 11, 1, 0),
+                Text = "His Girl Friday",
+                Director = "Howard Hawks",
+                Year = 1940,
+                Image = "https://js.devexpress.com/Demos/WidgetsGallery/JSDemos/images/movies/HisGirlFriday.jpg",
+                Duration = 92
             }
         };
     }
