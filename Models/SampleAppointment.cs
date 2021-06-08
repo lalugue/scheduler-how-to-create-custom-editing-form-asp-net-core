@@ -16,5 +16,8 @@ namespace ASP.NET_Core.Models
         public int Year { get; set; }
         public string Image { get; set; }
         public int Duration { get; set; }
+        public string SeatRow { get; set; }
+        public int SeatNumber { get; set; }
+
     }
 }
