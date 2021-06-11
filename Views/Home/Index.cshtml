@@ -6,6 +6,7 @@
     .DataSource(d => d.Mvc().Controller("SampleData").LoadAction("Get").Key("ID"))
     .StartDateExpr("StartDate")
     .EndDateExpr("EndDate")
+    .TextExpr("Text")
     .Views(new[] {
             SchedulerViewType.Day,
             SchedulerViewType.TimelineDay            
