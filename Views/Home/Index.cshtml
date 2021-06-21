@@ -20,15 +20,32 @@
     .Height(600)
     .OnAppointmentFormOpening("onAppointmentFormOpening"));
 
+@(Html.DevExtreme().Popup()
+    .ID("popup")
+    .Width(500)
+    .CloseOnOutsideClick(true));
+    //.Visible(new JS("isCustomPopupVisible"))
+    //.Title(new JS("editAppointmentData.Text")))
+
 <script>
     var editAppointmentData;
     var isCustomPopupVisible = false;
+    var customPopupTitle = "";
 
     function onAppointmentFormOpening(e) {
         e.cancel = true;
         editAppointmentData = { ...e.appointmentData };
-        if (editAppointmentData.id) {
+        if (editAppointmentData.ID) {
             isCustomPopupVisible = true;
+            customPopupTitle = editAppointmentData.Text
+
+            let customPopupOptions = {
+                visible: isCustomPopupVisible,
+                title: customPopupTitle
+            };
+            console.log("showing popup")
+            $("#popup").dxPopup("instance").option(customPopupOptions);
+
         }
     }
 </script>
