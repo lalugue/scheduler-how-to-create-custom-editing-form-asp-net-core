@@ -21,8 +21,15 @@
     .OnAppointmentFormOpening("onAppointmentFormOpening"));
 
 <script>
-    function onAppointmentFormOpening(e) {
+    var editAppointmentData;
+    var isCustomPopupVisible = false;
 
+    function onAppointmentFormOpening(e) {
+        e.cancel = true;
+        editAppointmentData = { ...e.appointmentData };
+        if (editAppointmentData.id) {
+            isCustomPopupVisible = true;
+        }
     }
 </script>
 
