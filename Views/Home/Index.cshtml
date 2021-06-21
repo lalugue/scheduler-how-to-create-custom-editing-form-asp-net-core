@@ -18,16 +18,11 @@
     .EndDayHour(23)
     .ShowAllDayPanel(false)
     .Height(600)
-    .OnAppointmentFormOpening("onAppointmentFormOpening")
-    .OnContentReady("onContentReady"));
+    .OnAppointmentFormOpening("onAppointmentFormOpening"));
 
 <script>
     function onAppointmentFormOpening(e) {
 
-    }
-
-    function onContentReady(e) {
-        console.log(e.component.getDataSource().items())
     }
 </script>
 
