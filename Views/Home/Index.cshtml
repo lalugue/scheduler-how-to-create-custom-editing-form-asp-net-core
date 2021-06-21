@@ -13,9 +13,19 @@
         })
     .CurrentView(SchedulerViewType.Day)
     .CurrentDate(new DateTime(2015, 4, 25))
+    .FirstDayOfWeek(0)
+    .StartDayHour(9)
+    .EndDayHour(23)
+    .ShowAllDayPanel(false)
+    .Height(600)
+    .OnAppointmentFormOpening("onAppointmentFormOpening")
     .OnContentReady("onContentReady"));
 
 <script>
+    function onAppointmentFormOpening(e) {
+
+    }
+
     function onContentReady(e) {
         console.log(e.component.getDataSource().items())
     }
