@@ -9,7 +9,7 @@
     .TextExpr("Text")
     .Views(new[] {
             SchedulerViewType.Day,
-            SchedulerViewType.TimelineDay            
+            SchedulerViewType.TimelineDay
         })
     .CurrentView(SchedulerViewType.Day)
     .CurrentDate(new DateTime(2015, 4, 25))
@@ -23,9 +23,22 @@
 @(Html.DevExtreme().Popup()
     .ID("popup")
     .Width(500)
-    .CloseOnOutsideClick(true));
-    //.Visible(new JS("isCustomPopupVisible"))
-    //.Title(new JS("editAppointmentData.Text")))
+    .CloseOnOutsideClick(true))
+    .Visible(new JS("isCustomPopupVisible"))
+    .Title(new JS("editAppointmentData.Text"))
+    .ContentTemplate(new TemplateName("popup-template")));
+
+@using (Html.DevExtreme().NamedTemplate("popup-template"))
+{
+    @(Html.DevExtreme().ScrollView()
+        .Width("100%")
+        .Height("100%")
+        .Content(@<text>            
+            <p>@(new JS("customPopupTitle"))</p>
+        </text>)
+    )
+}
+
 
 <script>
     var editAppointmentData;
@@ -38,12 +51,16 @@
         if (editAppointmentData.ID) {
             isCustomPopupVisible = true;
             customPopupTitle = editAppointmentData.Text
+            
 
             let customPopupOptions = {
                 visible: isCustomPopupVisible,
                 title: customPopupTitle
             };
             console.log("showing popup")
+            //$("#popup").dxPopup("instance").show();
+            //$("#popup").dxPopup("instance").repaint();
+
             $("#popup").dxPopup("instance").option(customPopupOptions);
 
         }
