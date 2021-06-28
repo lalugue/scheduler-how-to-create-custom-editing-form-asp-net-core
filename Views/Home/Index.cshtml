@@ -33,9 +33,31 @@
     @(Html.DevExtreme().ScrollView()
         .Width("100%")
         .Height("100%")
-        .Content(@<text>    
-            <p>Content Template: </p>
-            <p id="popup-title">@(new JS("customPopupTitle"))</p>
+        .Content(@<text>
+            <img id="popup-image" src="{{ editAppointmentData.image }}" class="dx-field-label" />
+              <div class="dx-field-label">
+                <p>
+                  <b id="popup-text"></b>
+                </p>
+                <p id="popup-year">Year: {{ editAppointmentData.year }}</p>
+                <p id="popup-duration">Duration: {{ editAppointmentData.duration }} minutes</p>
+              </div>
+
+              <div class="dx-field-label">
+                <b id="popup-date"></b>
+              </div>
+
+              <div class="dx-field-label"><b>Price ($): </b></div>
+              <div id="popup-price" class="dx-field-label">
+                {{
+                  editAppointmentData.seatRow && editAppointmentData.seatNumber
+                    ? setSeatPrice(
+                        editAppointmentData.price,
+                        editAppointmentData.seatRow
+                      )
+                    : "Pick a seat for pricing"
+                }}
+              </div>
         </text>)
     )
 }
@@ -48,20 +70,23 @@
 
     function onAppointmentFormOpening(e) {
         e.cancel = true;
-        editAppointmentData = { ...e.appointmentData };        
-        if (editAppointmentData.ID) {         
+        editAppointmentData = { ...e.appointmentData };
+        if (editAppointmentData.ID) {
             isCustomPopupVisible = true;
             customPopupTitle = editAppointmentData.Text
-            
-           let customPopupOptions = {
+
+            let customPopupOptions = {
                 visible: isCustomPopupVisible,
                 title: customPopupTitle
-            };            
+            };
 
             $("#popup").dxPopup("instance").option(customPopupOptions);
 
-            $("#popup-title").text(customPopupTitle);        
+            $("#popup-text").text(editAppointmentData.Text);
+            $("#popup-year").text(`Year: ${editAppointmentData.Year}`);
+            $("#popup-duration").text(`Duration: ${editAppointmentData.Duration} minutes`);
             
+
         }
     }
 </script>
