@@ -34,13 +34,13 @@
         .Width("100%")
         .Height("100%")
         .Content(@<text>
-            <img id="popup-image" src="{{ editAppointmentData.image }}" class="dx-field-label" />
+            <img id="popup-image" src="" class="dx-field-label" />
               <div class="dx-field-label">
                 <p>
                   <b id="popup-text"></b>
                 </p>
-                <p id="popup-year">Year: {{ editAppointmentData.year }}</p>
-                <p id="popup-duration">Duration: {{ editAppointmentData.duration }} minutes</p>
+                <p id="popup-year"></p>
+                <p id="popup-duration"></p>
               </div>
 
               <div class="dx-field-label">
@@ -87,7 +87,8 @@
             $("#popup-duration").text(`Duration: ${editAppointmentData.Duration} minutes`);
 
            
-            $("#popup-date").text(`${DevExpress.localization.formatDate(new Date(editAppointmentData.StartDate), "shortTime")} - ${DevExpress.localization.formatDate(new Date(editAppointmentData.EndDate), "shortTime")}`);
+            $("#popup-date").text(`${DevExpress.localization.formatDate(new Date(editAppointmentData.StartDate), "shortTime")} - ${DevExpress.localization.formatDate(new Date(editAppointmentData.EndDate), "shortTime")}`);           
+            $("#popup-image").attr("src", editAppointmentData.Image);
 
         }
     }
