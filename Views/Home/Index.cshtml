@@ -23,7 +23,7 @@
 @(Html.DevExtreme().Popup()
     .ID("popup")
     .Width(500)
-    .CloseOnOutsideClick(true))
+    .CloseOnOutsideClick(true)
     .Visible(new JS("isCustomPopupVisible"))
     .Title(new JS("editAppointmentData.Text"))
     .ContentTemplate(new TemplateName("popup-template")));
@@ -33,24 +33,32 @@
     @(Html.DevExtreme().ScrollView()
         .Width("100%")
         .Height("100%")
-        .Content(@<text>            
-            <p>@(new JS("customPopupTitle"))</p>
+        .Content(@<text>    
+            <p>Content Template: </p>
+            <p id="popup-title">@(new JS("customPopupTitle"))</p>
         </text>)
     )
 }
 
 
 <script>
-    var editAppointmentData;
+    var editAppointmentData = {};
     var isCustomPopupVisible = false;
     var customPopupTitle = "";
 
     function onAppointmentFormOpening(e) {
         e.cancel = true;
         editAppointmentData = { ...e.appointmentData };
+        console.log(editAppointmentData)
         if (editAppointmentData.ID) {
+            console.log("setting popup options")
+            console.log(editAppointmentData)
+            let template = $("#popup").dxPopup("instance").option("contentTemplate");
             isCustomPopupVisible = true;
+            console.log(template)
             customPopupTitle = editAppointmentData.Text
+            console.log("customPopupTitle: ", customPopupTitle)
+           
             
 
             let customPopupOptions = {
@@ -62,6 +70,11 @@
             //$("#popup").dxPopup("instance").repaint();
 
             $("#popup").dxPopup("instance").option(customPopupOptions);
+
+            $("#popup-title").text(customPopupTitle);
+            
+            
+            $("#popup").dxPopup("instance").option("contentTemplate", template);
 
         }
     }
