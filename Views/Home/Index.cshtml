@@ -48,15 +48,7 @@
               </div>
 
               <div class="dx-field-label"><b>Price ($): </b></div>
-              <div id="popup-price" class="dx-field-label">
-                {{
-                  editAppointmentData.seatRow && editAppointmentData.seatNumber
-                    ? setSeatPrice(
-                        editAppointmentData.price,
-                        editAppointmentData.seatRow
-                      )
-                    : "Pick a seat for pricing"
-                }}
+              <div id="popup-price" class="dx-field-label">                
               </div>
         </text>)
     )
@@ -89,8 +81,17 @@
            
             $("#popup-date").text(`${DevExpress.localization.formatDate(new Date(editAppointmentData.StartDate), "shortTime")} - ${DevExpress.localization.formatDate(new Date(editAppointmentData.EndDate), "shortTime")}`);           
             $("#popup-image").attr("src", editAppointmentData.Image);
+            $("#popup-price").text(calculatePrice(editAppointmentData.seatRow, editAppointmentData.seatNumber, editAppointmentData.price))
 
         }
+    }
+
+    function calculatePrice(seatRow, seatNumber, price) {
+        return seatRow && seatNumber ? setSeatPrice(price, seatRow) : "Pick a seat for pricing";
+    }
+
+    function setSeatPrice(price, seatRow) {
+        return price * seatRow;
     }
 </script>
 
