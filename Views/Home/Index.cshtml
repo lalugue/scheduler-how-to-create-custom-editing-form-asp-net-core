@@ -85,7 +85,9 @@
             $("#popup-text").text(editAppointmentData.Text);
             $("#popup-year").text(`Year: ${editAppointmentData.Year}`);
             $("#popup-duration").text(`Duration: ${editAppointmentData.Duration} minutes`);
-            
+
+           
+            $("#popup-date").text(`${DevExpress.localization.formatDate(new Date(editAppointmentData.StartDate), "shortTime")} - ${DevExpress.localization.formatDate(new Date(editAppointmentData.EndDate), "shortTime")}`);
 
         }
     }
