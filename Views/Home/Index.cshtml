@@ -48,34 +48,20 @@
 
     function onAppointmentFormOpening(e) {
         e.cancel = true;
-        editAppointmentData = { ...e.appointmentData };
-        console.log(editAppointmentData)
-        if (editAppointmentData.ID) {
-            console.log("setting popup options")
-            console.log(editAppointmentData)
-            let template = $("#popup").dxPopup("instance").option("contentTemplate");
+        editAppointmentData = { ...e.appointmentData };        
+        if (editAppointmentData.ID) {         
             isCustomPopupVisible = true;
-            console.log(template)
             customPopupTitle = editAppointmentData.Text
-            console.log("customPopupTitle: ", customPopupTitle)
-           
             
-
-            let customPopupOptions = {
+           let customPopupOptions = {
                 visible: isCustomPopupVisible,
                 title: customPopupTitle
-            };
-            console.log("showing popup")
-            //$("#popup").dxPopup("instance").show();
-            //$("#popup").dxPopup("instance").repaint();
+            };            
 
             $("#popup").dxPopup("instance").option(customPopupOptions);
 
-            $("#popup-title").text(customPopupTitle);
+            $("#popup-title").text(customPopupTitle);        
             
-            
-            $("#popup").dxPopup("instance").option("contentTemplate", template);
-
         }
     }
 </script>
