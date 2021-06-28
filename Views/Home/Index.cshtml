@@ -48,8 +48,17 @@
               </div>
 
               <div class="dx-field-label"><b>Price ($): </b></div>
-              <div id="popup-price" class="dx-field-label">                
+                <div id="popup-price" class="dx-field-label">
               </div>
+
+              @(Html.DevExtreme().SelectBox()
+                .ID("rowView")
+                .ElementAttr(new JS("elementAttr"))
+                .DataSource(new JS("rows"))
+                .Width(400)
+                .Placeholder("Pick a row")
+                .Value(new JS("editAppointmentData.seatRow"))
+                )               
         </text>)
     )
 }
@@ -59,6 +68,12 @@
     var editAppointmentData = {};
     var isCustomPopupVisible = false;
     var customPopupTitle = "";
+
+    var elementAttr = {
+        class: "dx-field-label"
+    };
+
+    var rows = ['A', 'B', 'C', 'D'];
 
     function onAppointmentFormOpening(e) {
         e.cancel = true;
@@ -78,8 +93,8 @@
             $("#popup-year").text(`Year: ${editAppointmentData.Year}`);
             $("#popup-duration").text(`Duration: ${editAppointmentData.Duration} minutes`);
 
-           
-            $("#popup-date").text(`${DevExpress.localization.formatDate(new Date(editAppointmentData.StartDate), "shortTime")} - ${DevExpress.localization.formatDate(new Date(editAppointmentData.EndDate), "shortTime")}`);           
+
+            $("#popup-date").text(`${DevExpress.localization.formatDate(new Date(editAppointmentData.StartDate), "shortTime")} - ${DevExpress.localization.formatDate(new Date(editAppointmentData.EndDate), "shortTime")}`);
             $("#popup-image").attr("src", editAppointmentData.Image);
             $("#popup-price").text(calculatePrice(editAppointmentData.seatRow, editAppointmentData.seatNumber, editAppointmentData.price))
 
