@@ -58,6 +58,7 @@
                 .Width(400)
                 .Placeholder("Pick a row")
                 .Value(new JS("editAppointmentData.seatRow"))
+                .OnValueChanged("onValueChangedRow")
                 )               
         </text>)
     )
@@ -108,5 +109,10 @@
     function setSeatPrice(price, seatRow) {
         return price * seatRow;
     }
+
+    function onValueChangedRow(e) {
+
+    }
+
 </script>
 
