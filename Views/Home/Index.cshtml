@@ -113,7 +113,7 @@
         }
     }
 
-    function calculatePrice(seatRow, seatNumber, price) {
+    function calculatePrice(seatRow, seatNumber, price) {        
         return seatRow && seatNumber ? setSeatPrice(price, seatRow) : "Pick a seat for pricing";
     }
 
@@ -139,17 +139,17 @@
     }
 
     function onValueChangedRow(e) {
-        editAppointmentData.seatRow = e.value;
+        editAppointmentData.seatRow = e.value;        
         if (editAppointmentData.seatRow && editAppointmentData.seatNumber) {
-            let priceText = "$" + calculatePrice(editAppointmentData.price, editAppointmentData.seatNumber, editAppointmentData.price);
+            let priceText = "$" + calculatePrice(editAppointmentData.seatRow, editAppointmentData.seatNumber, editAppointmentData.Price);
             $("#popup-price").text(priceText);
         }
     }
 
     function onValueChangedNumber(e) {
-        editAppointmentData.seatNumber = e.value;
+        editAppointmentData.seatNumber = e.value;        
         if (editAppointmentData.seatRow && editAppointmentData.seatNumber) {
-            let priceText = "$" + calculatePrice(editAppointmentData.price, editAppointmentData.seatNumber, editAppointmentData.price);
+            let priceText = "$" + calculatePrice(editAppointmentData.seatRow, editAppointmentData.seatNumber, editAppointmentData.Price);
             $("#popup-price").text(priceText);
         }
     }
