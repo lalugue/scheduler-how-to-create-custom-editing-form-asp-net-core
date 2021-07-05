@@ -3,7 +3,8 @@
 <h2>Home</h2>
 
 @(Html.DevExtreme().Scheduler()
-    .DataSource(d => d.Mvc().Controller("SampleData").LoadAction("Get").Key("ID"))
+    .ID("scheduler")
+    .DataSource(d => d.Mvc().Controller("SampleData").LoadAction("Get").UpdateAction("Put").Key("ID"))
     .StartDateExpr("StartDate")
     .EndDateExpr("EndDate")
     .TextExpr("Text")
@@ -128,7 +129,17 @@
     }
 
     function updateAppointment() {
-
+        let scheduler = $("#scheduler").dxScheduler("instance");
+        let data = scheduler.getDataSource().items();
+        if (editAppointmentData.seatRow && editAppointmentData.seatNumber) {
+            let oldAppointmentData = data.find(item => item.id === editAppointmentData.id);
+            scheduler.updateAppointment(
+                oldAppointmentData,
+                editAppointmentData
+            );
+            DevExpress.ui.notify(`Selected seat ${editAppointmentData.seatRow}${editAppointmentData.seatNumber} for ${editAppointmentData.text}. Enjoy!`);
+        }
+        $("#popup").dxPopup("instance").hide();
     }
 
     function onHiding(e) {
