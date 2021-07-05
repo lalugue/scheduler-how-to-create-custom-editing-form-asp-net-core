@@ -26,7 +26,17 @@
     .CloseOnOutsideClick(true)
     .Visible(new JS("isCustomPopupVisible"))
     .Title(new JS("editAppointmentData.Text"))
-    .ContentTemplate(new TemplateName("popup-template")));
+    .ContentTemplate(new TemplateName("popup-template"))
+    .ToolbarItems(t =>
+    {
+        t.Add()
+            .Toolbar(Toolbar.Bottom)
+            .Location(ToolbarItemLocation.After).
+            Widget(w => w.Button()
+                .Text("OK")
+                .OnClick("updateAppointment"));
+    }));
+    
 
 @using (Html.DevExtreme().NamedTemplate("popup-template"))
 {
@@ -111,6 +121,10 @@
             $("#popup-price").text(calculatePrice(editAppointmentData.seatRow, editAppointmentData.seatNumber, editAppointmentData.price))
 
         }
+    }
+
+    function updateAppointment() {
+
     }
 
     function calculatePrice(seatRow, seatNumber, price) {        
