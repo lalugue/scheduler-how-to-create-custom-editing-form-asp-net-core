@@ -64,7 +64,7 @@
                 @(Html.DevExtreme().SelectBox()
                 .ID("seatNumber")
                 .ElementAttr(new JS("elementAttr"))
-                .DataSource(new JS("rows"))
+                .DataSource(new JS("seats"))
                 .Width(400)
                 .Placeholder("Pick a seat")
                 .Value(new JS("editAppointmentData.seatNumber"))
@@ -85,6 +85,7 @@
     };
 
     var rows = ['A', 'B', 'C', 'D'];
+    var seats = [1, 2, 3, 4, 5];
 
     function onAppointmentFormOpening(e) {
         e.cancel = true;
@@ -140,7 +141,7 @@
     function onValueChangedRow(e) {
         editAppointmentData.seatRow = e.value;
         if (editAppointmentData.seatRow && editAppointmentData.seatNumber) {
-            let priceText = "$" + calculatePrice(editAppointmentData.seatRow, editAppointmentData.seatNumber, editAppointmentData.price);
+            let priceText = "$" + calculatePrice(editAppointmentData.price, editAppointmentData.seatNumber, editAppointmentData.price);
             $("#popup-price").text(priceText);
         }
     }
@@ -148,7 +149,7 @@
     function onValueChangedNumber(e) {
         editAppointmentData.seatNumber = e.value;
         if (editAppointmentData.seatRow && editAppointmentData.seatNumber) {
-            let priceText = "$" + calculatePrice(editAppointmentData.seatRow, editAppointmentData.seatNumber, editAppointmentData.price);
+            let priceText = "$" + calculatePrice(editAppointmentData.price, editAppointmentData.seatNumber, editAppointmentData.price);
             $("#popup-price").text(priceText);
         }
     }
