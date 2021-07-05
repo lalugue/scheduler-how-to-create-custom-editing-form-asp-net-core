@@ -117,15 +117,38 @@
     }
 
     function setSeatPrice(price, seatRow) {
-        return price * seatRow;
+        let rowPrice;
+        switch (seatRow) {
+            case 'A':
+                rowPrice = 1;
+                break;
+            case 'B':
+                rowPrice = 2;
+                break;
+            case 'C':
+                rowPrice = 3;
+                break;
+            case 'D':
+                rowPrice = 4;
+                break;
+            default:
+                break;
+        }
+        return price * rowPrice;
     }
 
     function onValueChangedRow(e) {
         editAppointmentData.seatRow = e.value;
+        if (editAppointmentData.seatRow && editAppointmentData.seatNumber) {
+            calculatePrice(editAppointmentData.seatRow, editAppointmentData.seatNumber, editAppointmentData.price);
+        }
     }
 
     function onValueChangedNumber(e) {
         editAppointmentData.seatNumber = e.value;
+        if (editAppointmentData.seatRow && editAppointmentData.seatNumber) {
+            calculatePrice(editAppointmentData.seatRow, editAppointmentData.seatNumber, editAppointmentData.price);
+        }
     }
 
 </script>
