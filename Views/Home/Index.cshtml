@@ -140,14 +140,16 @@
     function onValueChangedRow(e) {
         editAppointmentData.seatRow = e.value;
         if (editAppointmentData.seatRow && editAppointmentData.seatNumber) {
-            calculatePrice(editAppointmentData.seatRow, editAppointmentData.seatNumber, editAppointmentData.price);
+            let priceText = "$" + calculatePrice(editAppointmentData.seatRow, editAppointmentData.seatNumber, editAppointmentData.price);
+            $("#popup-price").text(priceText);
         }
     }
 
     function onValueChangedNumber(e) {
         editAppointmentData.seatNumber = e.value;
         if (editAppointmentData.seatRow && editAppointmentData.seatNumber) {
-            calculatePrice(editAppointmentData.seatRow, editAppointmentData.seatNumber, editAppointmentData.price);
+            let priceText = "$" + calculatePrice(editAppointmentData.seatRow, editAppointmentData.seatNumber, editAppointmentData.price);
+            $("#popup-price").text(priceText);
         }
     }
 
