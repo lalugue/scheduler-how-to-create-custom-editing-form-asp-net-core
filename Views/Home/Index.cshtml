@@ -59,7 +59,17 @@
                 .Placeholder("Pick a row")
                 .Value(new JS("editAppointmentData.seatRow"))
                 .OnValueChanged("onValueChangedRow")
-                )               
+                )
+
+                @(Html.DevExtreme().SelectBox()
+                .ID("seatNumber")
+                .ElementAttr(new JS("elementAttr"))
+                .DataSource(new JS("rows"))
+                .Width(400)
+                .Placeholder("Pick a row")
+                .Value(new JS("editAppointmentData.seatNumber"))
+                .OnValueChanged("onValueChangedNumber")
+                )
         </text>)
     )
 }
@@ -112,6 +122,10 @@
 
     function onValueChangedRow(e) {
         editAppointmentData.seatRow = e.value;
+    }
+
+    function onValueChangedNumber(e) {
+        editAppointmentData.seatNumber = e.value;
     }
 
 </script>
