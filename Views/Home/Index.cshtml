@@ -26,6 +26,7 @@
     .CloseOnOutsideClick(true)
     .Visible(new JS("isCustomPopupVisible"))
     .Title(new JS("editAppointmentData.Text"))
+    .OnHiding("onHiding")  
     .ContentTemplate(new TemplateName("popup-template"))
     .ToolbarItems(t =>
     {
@@ -72,7 +73,7 @@
                 )
 
                 @(Html.DevExtreme().SelectBox()
-                .ID("seatNumber")
+                .ID("numberView")
                 .ElementAttr(new JS("elementAttr"))
                 .DataSource(new JS("seats"))
                 .Width(400)
@@ -120,11 +121,18 @@
             $("#popup-image").attr("src", editAppointmentData.Image);
             $("#popup-price").text(calculatePrice(editAppointmentData.seatRow, editAppointmentData.seatNumber, editAppointmentData.price))
 
+            $("#rowView").dxSelectBox("instance").option("value", editAppointmentData.seatRow);
+            $("#numberView").dxSelectBox("instance").option("value", editAppointmentData.seatNumber);
+
         }
     }
 
     function updateAppointment() {
 
+    }
+
+    function onHiding(e) {
+        this.editAppointmentData = {};
     }
 
     function calculatePrice(seatRow, seatNumber, price) {        
