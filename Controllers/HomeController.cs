@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using ASP_NET_Core.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ASP_NET_Core.Controllers
@@ -11,7 +10,7 @@ namespace ASP_NET_Core.Controllers
     {
         public IActionResult Index()
         {
-            return View(SampleData.Appointments);
+            return View();
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

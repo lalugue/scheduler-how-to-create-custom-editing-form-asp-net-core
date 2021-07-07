@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ASP_NET_Core.Models {
     static class SampleData {
-        public static List<SampleAppointment> Appointments = new List<SampleAppointment>() {
+        public static List<SampleAppointment> Orders = new List<SampleAppointment>() {
             new SampleAppointment
             {
                 ID = 1,
