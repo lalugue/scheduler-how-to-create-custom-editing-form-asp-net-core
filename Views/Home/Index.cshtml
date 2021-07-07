@@ -5,10 +5,8 @@
 
     @(Html.DevExtreme().Scheduler()
     .ID("scheduler")
-    .OnContentReady("onContentReady")
-    .OnAppointmentUpdating("onAppointmentUpdating")
-    .OnAppointmentUpdated("onAppointmentUpdated")    
     .DataSource(Model)
+    .OnAppointmentUpdating("onAppointmentUpdating")
     .StartDateExpr("StartDate")
     .EndDateExpr("EndDate")
     .TextExpr("Text")
@@ -102,31 +100,20 @@
     };
 
     var rows = ['A', 'B', 'C', 'D'];
-    var seats = [1, 2, 3, 4, 5];
+    var seats = [1, 2, 3, 4, 5];    
 
-    function onContentReady(e){
-        console.log("oncontentready")
-        console.log(e.component.getDataSource().items());
-    }
-
-    function onAppointmentUpdating(e){
-        console.log("onAppointmentUpdating: ", e);
+    function onAppointmentUpdating(e){        
         e.cancel = true;
         let data = e.component.getDataSource().items();
         let index = data.findIndex(i => i.ID == e.oldData.ID);
         data[index] = e.newData;
         e.component.option("dataSource", data);
-    }
-
-    function onAppointmentUpdated(e){
-        console.log("onAppointmentUpdated: ", e);
-    }
+    }    
 
     function onAppointmentFormOpening(e) {
         e.cancel = true;
         oldAppointment = { ...e.appointmentData };
-        editAppointmentData = { ...e.appointmentData };
-        console.log(editAppointmentData);
+        editAppointmentData = { ...e.appointmentData };        
         if (editAppointmentData.ID) {
             isCustomPopupVisible = true;
             customPopupTitle = editAppointmentData.Text
@@ -154,15 +141,12 @@
     }
 
     function updateAppointment() {
-        let scheduler = $("#scheduler").dxScheduler("instance");
-        let data = scheduler.getDataSource().items();
-        if (editAppointmentData.SeatRow && editAppointmentData.SeatNumber) {
-            console.log("updating appointment: ", oldAppointment, editAppointmentData)
+        let scheduler = $("#scheduler").dxScheduler("instance");        
+        if (editAppointmentData.SeatRow && editAppointmentData.SeatNumber) {            
             scheduler.updateAppointment(
                 oldAppointment,
                 editAppointmentData
-            );
-            scheduler.getDataSource().reload();
+            );            
             DevExpress.ui.notify(`Selected seat ${editAppointmentData.SeatRow}${editAppointmentData.SeatNumber} for ${editAppointmentData.Text}. Enjoy!`);
         }
         $("#popup").dxPopup("instance").hide();
