@@ -1,11 +1,11 @@
 @using ASP_NET_Core.Models
 @model IEnumerable<ASP.NET_Core.Models.SampleAppointment>
 
-    <h2>Home</h2>
+<h2>Home</h2>
 
-    @(Html.DevExtreme().Scheduler()
+@(Html.DevExtreme().Scheduler()
     .ID("scheduler")
-    .DataSource(Model)    
+    .DataSource(Model)
     .StartDateExpr("StartDate")
     .EndDateExpr("EndDate")
     .TextExpr("Text")
@@ -22,7 +22,7 @@
     .Height(600)
     .OnAppointmentFormOpening("onAppointmentFormOpening"));
 
-    @(Html.DevExtreme().Popup()
+@(Html.DevExtreme().Popup()
     .ID("popup")
     .Width(500)
     .CloseOnOutsideClick(true)
@@ -41,8 +41,8 @@
     }));
 
 
-    @using (Html.DevExtreme().NamedTemplate("popup-template"))
-    {
+@using (Html.DevExtreme().NamedTemplate("popup-template"))
+{
     @(Html.DevExtreme().ScrollView()
     .Width("100%")
     .Height("100%")
@@ -85,12 +85,12 @@
         )
     </text>)
     )
-    }
+}
 
 
-    <script>
-    var editAppointmentData = {};  
-    var oldAppointment = {};    
+<script>
+    var editAppointmentData = {};
+    var oldAppointment = {};
     var isCustomPopupVisible = false;
     var customPopupTitle = "";
 
@@ -99,10 +99,10 @@
     };
 
     var rows = ['A', 'B', 'C', 'D'];
-    var seats = [1, 2, 3, 4, 5];  
+    var seats = [1, 2, 3, 4, 5];
 
     function onAppointmentFormOpening(e) {
-        e.cancel = true;       
+        e.cancel = true;
         editAppointmentData = { ...e.appointmentData };
         oldAppointment = e.appointmentData;
         if (editAppointmentData.ID) {
@@ -131,13 +131,13 @@
         }
     }
 
-    function setAppointment() {               
-        if (editAppointmentData.SeatRow && editAppointmentData.SeatNumber) { 
-            let scheduler = $("#scheduler").dxScheduler("instance"); 
+    function setAppointment() {
+        if (editAppointmentData.SeatRow && editAppointmentData.SeatNumber) {
+            let scheduler = $("#scheduler").dxScheduler("instance");
             scheduler.updateAppointment(
                 oldAppointment,
                 editAppointmentData
-            );           
+            );
             DevExpress.ui.notify(`Selected seat ${editAppointmentData.SeatRow}${editAppointmentData.SeatNumber} for ${editAppointmentData.Text}. Enjoy!`);
         }
         $("#popup").dxPopup("instance").hide();
@@ -189,5 +189,5 @@
         }
     }
 
-    </script>
+</script>
 
