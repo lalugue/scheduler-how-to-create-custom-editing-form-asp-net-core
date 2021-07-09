@@ -6,7 +6,6 @@
     @(Html.DevExtreme().Scheduler()
     .ID("scheduler")
     .DataSource(Model)    
-    .OnAppointmentUpdating("onAppointmentUpdating")
     .StartDateExpr("StartDate")
     .EndDateExpr("EndDate")
     .TextExpr("Text")
@@ -91,7 +90,7 @@
 
     <script>
     var editAppointmentData = {};  
-    var oldAppointment;    
+    var oldAppointment = {};    
     var isCustomPopupVisible = false;
     var customPopupTitle = "";
 
@@ -100,15 +99,7 @@
     };
 
     var rows = ['A', 'B', 'C', 'D'];
-    var seats = [1, 2, 3, 4, 5];    
-
-    function onAppointmentUpdating(e){        
-       /* e.cancel = true;
-        let data = e.component.getDataSource().items();
-        let index = data.findIndex(i => i.ID == e.oldData.ID);
-        data[index] = e.newData;
-        e.component.option("dataSource", data);*/
-    }    
+    var seats = [1, 2, 3, 4, 5];  
 
     function onAppointmentFormOpening(e) {
         e.cancel = true;       
@@ -140,34 +131,21 @@
         }
     }
 
-    function setAppointment() {
-        let scheduler = $("#scheduler").dxScheduler("instance");        
-        if (editAppointmentData.SeatRow && editAppointmentData.SeatNumber) {
-            //let data = scheduler.getDataSource().items();
-            //let oldAppointment = data.find(i => i.ID === editAppointmentData.ID);
-            //oldAppointment = editAppointmentData;
-            //let index = data.findIndex(i => i.ID == e.oldData.ID);
-            //data[index] = e.newData;
-            //scheduler.option("dataSource", data);
-            /*scheduler.updateAppointment(
-                { ID: editAppointmentData.ID },
-                editAppointmentData
-            );*/            
+    function setAppointment() {               
+        if (editAppointmentData.SeatRow && editAppointmentData.SeatNumber) { 
+            let scheduler = $("#scheduler").dxScheduler("instance"); 
             scheduler.updateAppointment(
                 oldAppointment,
                 editAppointmentData
-            );
-            //console.log(editAppointmentData);
-            //scheduler.getDataSource().store().push([{ type: "update", key: { ID: editAppointmentData.ID }, data: { SeatRow: editAppointmentData.SeatRow, SeatNumber: editAppointmentData.SeatNumber } }]);
-            console.log(scheduler.getDataSource().items())
-            //scheduler.getDataSource().reload();
+            );           
             DevExpress.ui.notify(`Selected seat ${editAppointmentData.SeatRow}${editAppointmentData.SeatNumber} for ${editAppointmentData.Text}. Enjoy!`);
         }
         $("#popup").dxPopup("instance").hide();
     }
 
     function onHiding(e) {
-        this.editAppointmentData = {};
+        editAppointmentData = {};
+        oldAppointment = {};
     }
 
     function calculatePrice(SeatRow, SeatNumber, price) {
